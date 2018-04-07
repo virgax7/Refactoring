@@ -75,8 +75,7 @@ public class GUITradeDialog extends JDialog implements TradeDialog {
     private void buildSellersCombo() {
         List sellers = GameMaster.instance().getSellerList();
         for (final Object seller : sellers) {
-            Player player = (Player) seller;
-            cboSellers.addItem(player);
+            cboSellers.addItem(seller);
         }
         if(sellers.size() > 0) {
             updatePropertiesCombo((Player)sellers.get(0));

@@ -9,7 +9,6 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 
 class GUICell extends JPanel {
-
 	private final Cell cell;
 	private JLabel lblInfo;
 	private final JLabel[] lblPlayers = new JLabel[GameMaster.MAX_PLAYER];

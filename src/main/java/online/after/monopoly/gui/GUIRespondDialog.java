@@ -12,8 +12,6 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
     private final JTextArea txtMessage = new JTextArea();
     
     public GUIRespondDialog() {
-        JButton btnYes = new JButton("Yes");
-        JButton btnNo = new JButton("No");
         txtMessage.setPreferredSize(new Dimension(300, 200));
         txtMessage.setEditable(false);
         txtMessage.setLineWrap(true);
@@ -21,7 +19,10 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(txtMessage, BorderLayout.CENTER);
+
         JPanel pnlButtons = new JPanel();
+        JButton btnYes = new JButton("Yes");
+        JButton btnNo = new JButton("No");
         pnlButtons.add(btnYes);
         pnlButtons.add(btnNo);
         contentPane.add(pnlButtons, BorderLayout.SOUTH);

@@ -4,14 +4,13 @@ import junit.framework.TestCase;
 import online.after.monopoly.GoCell;
 import online.after.monopoly.Player;
 import online.after.monopoly.PropertyCell;
-import online.after.monopoly.gui.GoCellInfoFormatter;
 import online.after.monopoly.gui.InfoFormatter;
 
 public class CellInfoFormatterTest extends TestCase {
     
     public void testGoCellTest() {
         GoCell cell = new GoCell();
-        String goLabel = GoCellInfoFormatter.GO_CELL_LABEL;
+        String goLabel = "<html><b>Go</b></html>";
         assertEquals(goLabel, InfoFormatter.cellInfo(cell));
     }
     
