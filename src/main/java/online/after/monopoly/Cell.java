@@ -3,7 +3,7 @@ package online.after.monopoly;
 public abstract class Cell {
 	private boolean available = true;
 	private String name;
-	protected Player owner;
+	Player owner;
 
 	public String getName() {
 		return name;
@@ -20,7 +20,7 @@ public abstract class Cell {
 	public boolean isAvailable() {
 		return available;
 	}
-	
+
 	public abstract void playAction();
 
 	public void setAvailable(boolean available) {

@@ -4,22 +4,20 @@ import online.after.monopoly.GameMaster;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class UtilDiceRoll extends JDialog {
+class UtilDiceRoll extends JDialog {
 	
 	public static int showDialog() {
 		UtilDiceRoll dialog = new UtilDiceRoll();
 		dialog.show();
 		return dialog.diceValue;
 	}
-	JButton btnDice = new JButton("Roll the Dice!");
-	private JButton btnOK = new JButton("OK");
+	private final JButton btnDice = new JButton("Roll the Dice!");
+	private final JButton btnOK = new JButton("OK");
 	private int diceValue;
-	private JLabel lblPrompt = new JLabel();
+	private final JLabel lblPrompt = new JLabel();
 
-	public UtilDiceRoll() {
+	private UtilDiceRoll() {
 		setModal(true);
 		btnOK.setEnabled(false);
 		lblPrompt.setText("Please roll the dice to determine your utility bill.");
@@ -30,24 +28,16 @@ public class UtilDiceRoll extends JDialog {
 		contentPane.setLayout(new BorderLayout());
 		contentPane.add(lblPrompt, BorderLayout.CENTER);
 		contentPane.add(pnlButtons, BorderLayout.SOUTH);
-		btnDice.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				rollDice();
-			}
-		});
-		btnOK.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent arg0) {
-				okClicked();
-			}
-		});
+		btnDice.addActionListener(arg0 -> rollDice());
+		btnOK.addActionListener(arg0 -> okClicked());
 		this.pack();
 	}
 	
-	public void okClicked(){
+	private void okClicked(){
 		this.dispose();
 	}
 	
-	public void rollDice() {
+	private void rollDice() {
 		int[] diceRoll = GameMaster.instance().rollDice();
 		this.diceValue = diceRoll[0] + diceRoll[1];
 		lblPrompt.setText("You rolled " + diceValue);

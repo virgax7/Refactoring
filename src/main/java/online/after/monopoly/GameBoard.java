@@ -5,13 +5,12 @@ import java.util.Hashtable;
 
 public class GameBoard {
 
-	private ArrayList cells = new ArrayList();
-    private ArrayList chanceCards = new ArrayList();
+	private final ArrayList cells = new ArrayList();
+    private final ArrayList chanceCards = new ArrayList();
 	//the key of colorGroups is the name of the color group.
-	private Hashtable colorGroups = new Hashtable();
-	private ArrayList communityChestCards = new ArrayList();
-	private GameMaster gameMaster;
-	
+	private final Hashtable colorGroups = new Hashtable();
+	private final ArrayList communityChestCards = new ArrayList();
+
 	public GameBoard() {
 		Cell go = new GoCell();
 		addCell(go);
@@ -31,7 +30,7 @@ public class GameBoard {
 
 	public void addCell(PropertyCell cell) {
 		int propertyNumber = getPropertyNumberForColor(cell.getColorGroup());
-		colorGroups.put(cell.getColorGroup(), new Integer(propertyNumber + 1));
+		colorGroups.put(cell.getColorGroup(), propertyNumber + 1);
         cells.add(cell);
 	}
 
@@ -77,15 +76,15 @@ public class GameBoard {
 	public int getPropertyNumberForColor(String name) {
 		Integer number = (Integer)colorGroups.get(name);
 		if(number != null) {
-			return number.intValue();
+			return number;
 		}
 		return 0;
 	}
 
 	public Cell queryCell(String string) {
-		for(int i = 0; i < cells.size(); i++){
-			Cell temp = (Cell)cells.get(i);
-			if(temp.getName().equals(string)) {
+		for (Object cell : cells) {
+			Cell temp = (Cell) cell;
+			if (temp.getName().equals(string)) {
 				return temp;
 			}
 		}

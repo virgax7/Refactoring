@@ -8,25 +8,23 @@ import online.after.monopoly.Player;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class PlayerPanel extends JPanel {
+class PlayerPanel extends JPanel {
 
-    private JButton btnBuyHouse;
-    private JButton btnDrawCard;
-    private JButton btnEndTurn;
-    private JButton btnGetOutOfJail;
-    private JButton btnPurchaseProperty;
-    private JButton btnRollDice;
-    private JButton btnTrade;
+    private final JButton btnBuyHouse;
+    private final JButton btnDrawCard;
+    private final JButton btnEndTurn;
+    private final JButton btnGetOutOfJail;
+    private final JButton btnPurchaseProperty;
+    private final JButton btnRollDice;
+    private final JButton btnTrade;
     
-    private JLabel lblMoney;
-    private JLabel lblName;
+    private final JLabel lblMoney;
+    private final JLabel lblName;
     
-    private Player player;
+    private final Player player;
     
-    private JTextArea txtProperty;
+    private final JTextArea txtProperty;
 
     public PlayerPanel(Player player) {
         JPanel pnlAction = new JPanel();
@@ -87,65 +85,35 @@ public class PlayerPanel extends JPanel {
 
         setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        btnRollDice.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnRollDiceClicked();
-            }
+        btnRollDice.addActionListener(e -> GameMaster.instance().btnRollDiceClicked());
+
+        btnEndTurn.addActionListener(e -> GameMaster.instance().btnEndTurnClicked());
+
+        btnPurchaseProperty.addActionListener(e -> GameMaster.instance().btnPurchasePropertyClicked());
+
+        btnBuyHouse.addActionListener(e -> GameMaster.instance().btnBuyHouseClicked());
+
+        btnGetOutOfJail.addActionListener(e -> GameMaster.instance().btnGetOutOfJailClicked());
+
+        btnDrawCard.addActionListener(e -> {
+            Card card = GameMaster.instance().btnDrawCardClicked();
+            JOptionPane
+                    .showMessageDialog(PlayerPanel.this, card.getLabel());
+            displayInfo();
         });
 
-        btnEndTurn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnEndTurnClicked();
-            }
-        });
-
-        btnPurchaseProperty.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnPurchasePropertyClicked();
-            }
-        });
-
-        btnBuyHouse.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnBuyHouseClicked();
-            }
-        });
-
-        btnGetOutOfJail.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnGetOutOfJailClicked();
-            }
-        });
-
-        btnDrawCard.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Card card = GameMaster.instance().btnDrawCardClicked();
-                JOptionPane
-                        .showMessageDialog(PlayerPanel.this, card.getLabel());
-                displayInfo();
-            }
-        });
-
-        btnTrade.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                GameMaster.instance().btnTradeClicked();
-            }
-        });
+        btnTrade.addActionListener(e -> GameMaster.instance().btnTradeClicked());
     }
 
     public void displayInfo() {
         lblName.setText(player.getName());
         lblMoney.setText("$ " + player.getMoney());
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         Cell[] cells = player.getAllProperties();
-        for (int i = 0; i < cells.length; i++) {
-            buf.append(cells[i] + "\n");
+        for (final Cell cell : cells) {
+            buf.append(cell + "\n");
         }
         txtProperty.setText(buf.toString());
-    }
-    
-    public boolean isBuyHouseButtonEnabled() {
-        return btnBuyHouse.isEnabled();
     }
 
     public boolean isDrawCardButtonEnabled() {
@@ -158,14 +126,6 @@ public class PlayerPanel extends JPanel {
     
     public boolean isGetOutOfJailButtonEnabled() {
         return btnGetOutOfJail.isEnabled();
-    }
-    
-    public boolean isPurchasePropertyButtonEnabled() {
-        return btnPurchaseProperty.isEnabled();
-    }
-    
-    public boolean isRollDiceButtonEnabled() {
-        return btnRollDice.isEnabled();
     }
 
     public boolean isTradeButtonEnabled() {

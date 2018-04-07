@@ -1,10 +1,10 @@
 package online.after.monopoly;
 
 public class MoneyCard extends Card {
-    private int amount;
-    private int cardType;
+    private final int amount;
+    private final int cardType;
     
-    private String label;
+    private final String label;
     
     public MoneyCard(String label, int amount, int cardType){
         this.label = label;

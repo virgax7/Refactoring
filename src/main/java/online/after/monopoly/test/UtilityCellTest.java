@@ -7,7 +7,7 @@ import online.after.monopoly.MockGUI;
 import online.after.monopoly.UtilityCell;
 
 public class UtilityCellTest extends TestCase {
-	GameMaster gameMaster;
+	private GameMaster gameMaster;
 
 	protected void setUp() {
 		gameMaster = GameMaster.instance();

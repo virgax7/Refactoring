@@ -7,7 +7,7 @@ import online.after.monopoly.PropertyCell;
 public class PropertyCellInfoFormatter implements CellInfoFormatter {
     public String format(Cell cell) {
         PropertyCell c = (PropertyCell)cell;
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         Player owner = cell.getOwner();
         String ownerName = "";
         if(owner != null) {

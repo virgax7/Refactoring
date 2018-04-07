@@ -2,7 +2,7 @@ package online.after.monopoly;
 
 public class MockGUI implements MonopolyGUI {
     private boolean btnDrawCardState, btnEndTurnState, btnGetOutOfJailState;
-    private boolean[] btnTradeState = new boolean[2];
+    private final boolean[] btnTradeState = new boolean[2];
 
     public void enableEndTurnBtn(int playerIndex) {
     }
@@ -39,13 +39,11 @@ public class MockGUI implements MonopolyGUI {
     }
 
     public RespondDialog openRespondDialog(TradeDeal deal) {
-        RespondDialog dialog = new MockRespondDialog(deal);
-        return dialog;
+        return new MockRespondDialog();
     }
 
     public TradeDialog openTradeDialog() {
-        TradeDialog dialog = new MockTradeDialog();
-        return dialog;
+        return new MockTradeDialog();
     }
 
     public void setBuyHouseEnabled(boolean b) {

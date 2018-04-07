@@ -5,13 +5,11 @@ import online.after.monopoly.*;
 import java.util.Hashtable;
 
 public class InfoFormatter {
-    static Hashtable cellInfoFormatters = null;
-    
+    private static final Hashtable cellInfoFormatters;
+
     static {
-        if (cellInfoFormatters == null) {
-            cellInfoFormatters = new Hashtable();
-            addFormatters();
-        }
+        cellInfoFormatters = new Hashtable();
+        addFormatters();
     }
     
     private static void addFormatters() {

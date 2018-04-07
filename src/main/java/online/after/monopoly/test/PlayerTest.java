@@ -5,9 +5,9 @@ import online.after.monopoly.*;
 
 public class PlayerTest extends TestCase {
 
-	GameMaster gameMaster;
+	private GameMaster gameMaster;
 	
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		gameMaster = GameMaster.instance();
 		gameMaster.setGameBoard(new SimpleGameBoard());
         gameMaster.setGUI(new MockGUI());

@@ -5,13 +5,11 @@ import online.after.monopoly.TradeDeal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class GUIRespondDialog extends JDialog implements RespondDialog {
     private boolean response;
-    JTextArea txtMessage = new JTextArea();
+    private final JTextArea txtMessage = new JTextArea();
     
     public GUIRespondDialog() {
         JButton btnYes = new JButton("Yes");
@@ -28,18 +26,14 @@ public class GUIRespondDialog extends JDialog implements RespondDialog {
         pnlButtons.add(btnNo);
         contentPane.add(pnlButtons, BorderLayout.SOUTH);
         
-        btnYes.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                response = true;
-                hide();
-            }
+        btnYes.addActionListener(e -> {
+            response = true;
+            hide();
         });
 
-        btnNo.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                response = false;
-                hide();
-            }
+        btnNo.addActionListener(e -> {
+            response = false;
+            hide();
         });
     
         setModal(true);

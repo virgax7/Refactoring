@@ -3,8 +3,8 @@ package online.after.monopoly;
 
 public class MovePlayerCard extends Card {
     
-    private String destination;
-    private int type;
+    private final String destination;
+    private final int type;
 
     public MovePlayerCard(String destination, int cardType) {
         this.destination = destination;

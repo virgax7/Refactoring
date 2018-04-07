@@ -8,11 +8,11 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 
-public class GUICell extends JPanel {
+class GUICell extends JPanel {
 
-	private Cell cell;
+	private final Cell cell;
 	private JLabel lblInfo;
-	private JLabel[] lblPlayers = new JLabel[GameMaster.MAX_PLAYER];
+	private final JLabel[] lblPlayers = new JLabel[GameMaster.MAX_PLAYER];
 	
     public GUICell(Cell cell) {
         this.cell = cell;

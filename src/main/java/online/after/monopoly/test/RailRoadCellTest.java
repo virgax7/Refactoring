@@ -7,7 +7,7 @@ import online.after.monopoly.MockGUI;
 import online.after.monopoly.RailRoadCell;
 
 public class RailRoadCellTest extends TestCase {
-	GameMaster gameMaster;
+	private GameMaster gameMaster;
 
 	protected void setUp() {
 		gameMaster = GameMaster.instance();

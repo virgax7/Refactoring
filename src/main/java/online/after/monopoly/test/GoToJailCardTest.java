@@ -4,8 +4,8 @@ import junit.framework.TestCase;
 import online.after.monopoly.*;
 
 public class GoToJailCardTest extends TestCase {
-    GameMaster gameMaster;
-    Card jailCard = new JailCard(Card.TYPE_CC);
+    private GameMaster gameMaster;
+    private final Card jailCard = new JailCard(Card.TYPE_CC);
 
     protected void setUp() {
 		gameMaster = GameMaster.instance();

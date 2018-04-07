@@ -4,8 +4,8 @@ import junit.framework.TestCase;
 import online.after.monopoly.*;
 
 public class LoseMoneyCardTest extends TestCase {
-    GameMaster gameMaster;
-    Card loseMoneyCard;
+    private GameMaster gameMaster;
+    private Card loseMoneyCard;
 
     protected void setUp() {
 		gameMaster = GameMaster.instance();

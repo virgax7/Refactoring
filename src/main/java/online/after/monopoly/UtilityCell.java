@@ -23,7 +23,7 @@ public class UtilityCell extends Cell {
 	}
 
 	public void playAction() {
-		Player currentPlayer = null;
+		Player currentPlayer;
 		if(!isAvailable()) {
 			currentPlayer = GameMaster.instance().getCurrentPlayer();
 			if(owner != currentPlayer) {

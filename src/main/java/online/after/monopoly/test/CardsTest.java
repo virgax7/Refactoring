@@ -4,9 +4,10 @@ import junit.framework.TestCase;
 import online.after.monopoly.*;
 
 public class CardsTest extends TestCase {
-    Card ccCard, chanceCard;
+    private Card ccCard;
+    private Card chanceCard;
 
-    GameMaster gameMaster;
+    private GameMaster gameMaster;
 
     protected void setUp() {
         gameMaster = GameMaster.instance();
@@ -20,9 +21,9 @@ public class CardsTest extends TestCase {
     }
 
     public void testCardType() {
-        Card card = gameMaster.drawCCCard();
+        gameMaster.drawCCCard();
         assertEquals(Card.TYPE_CC, ccCard.getCardType());
-        card = gameMaster.drawChanceCard();
+        gameMaster.drawChanceCard();
         assertEquals(Card.TYPE_CHANCE, chanceCard.getCardType());
     }
 }

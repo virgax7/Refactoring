@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainWindow extends JFrame implements MonopolyGUI {
-	JPanel eastPanel = new JPanel();
-	ArrayList guiCells = new ArrayList();
+	private final JPanel eastPanel = new JPanel();
+	private final ArrayList guiCells = new ArrayList();
 
-	JPanel northPanel = new JPanel();
-	PlayerPanel[] playerPanels;
-	JPanel southPanel = new JPanel();
-	JPanel westPanel = new JPanel();
+	private final JPanel northPanel = new JPanel();
+	private PlayerPanel[] playerPanels;
+	private final JPanel southPanel = new JPanel();
+	private final JPanel westPanel = new JPanel();
 
 	public MainWindow() {
 		northPanel.setBorder(new LineBorder(Color.BLACK));
@@ -43,8 +43,8 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 	}
 
 	private void addCells(JPanel panel, List cells) {
-		for(int x=0; x<cells.size(); x++) {
-			GUICell cell = new GUICell((Cell)cells.get(x));
+		for (Object cell1 : cells) {
+			GUICell cell = new GUICell((Cell) cell1);
 			panel.add(cell);
 			guiCells.add(cell);
 		}
@@ -124,9 +124,9 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 
 	private GUICell queryCell(int index) {
 		Cell cell = GameMaster.instance().getGameBoard().getCell(index);
-		for(int x = 0; x < guiCells.size(); x++) {
-			GUICell guiCell = (GUICell)guiCells.get(x);
-			if(guiCell.getCell() == cell) return guiCell;
+		for (Object guiCell1 : guiCells) {
+			GUICell guiCell = (GUICell) guiCell1;
+			if (guiCell.getCell() == cell) return guiCell;
 		}
 		return null;
 	}
@@ -199,11 +199,11 @@ public class MainWindow extends JFrame implements MonopolyGUI {
 	}
 
 	public void update() {
-		for(int i = 0; i < playerPanels.length; i++) {
-			playerPanels[i].displayInfo();
+		for (final PlayerPanel playerPanel : playerPanels) {
+			playerPanel.displayInfo();
 		}
-		for(int j = 0; j < guiCells.size(); j++ ) {
-			GUICell cell = (GUICell)guiCells.get(j);
+		for (Object guiCell : guiCells) {
+			GUICell cell = (GUICell) guiCell;
 			cell.displayInfo();
 		}
 	}

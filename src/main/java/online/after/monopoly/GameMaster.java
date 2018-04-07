@@ -1,18 +1,17 @@
 package online.after.monopoly;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 
 public class GameMaster {
 
 	private static GameMaster gameMaster;
 	static final public int MAX_PLAYER = 8;	
-	private Die[] dice;
+	private final Die[] dice;
 	private GameBoard gameBoard;
 	private MonopolyGUI gui;
-	private int initAmountOfMoney;
-	private ArrayList players = new ArrayList();
+	private final int initAmountOfMoney;
+	private final ArrayList players = new ArrayList();
 	private int turn = 0;
 	private int utilDiceRoll;
 	private boolean testMode;
@@ -24,7 +23,7 @@ public class GameMaster {
 		return gameMaster;
 	}
 
-	public GameMaster() {
+	private GameMaster() {
 		initAmountOfMoney = 1500;
 		dice = new Die[]{new Die(), new Die()};
 	}
@@ -36,7 +35,7 @@ public class GameMaster {
     public Card btnDrawCardClicked() {
         gui.setDrawCardEnabled(false);
         CardCell cell = (CardCell)getCurrentPlayer().getPosition();
-        Card card = null;
+        Card card;
         if(cell.getType() == Card.TYPE_CC) {
             card = getGameBoard().drawCCCard();
             card.applyAction();
@@ -97,13 +96,12 @@ public class GameMaster {
 		if((rolls[0]+rolls[1]) > 0) {
 			Player player = getCurrentPlayer();
 			gui.setRollDiceEnabled(false);
-			StringBuffer msg = new StringBuffer();
-			msg.append(player.getName())
-					.append(", you rolled ")
-					.append(rolls[0])
-					.append(" and ")
-					.append(rolls[1]);
-			gui.showMessage(msg.toString());
+			final String msg = player.getName() +
+					", you rolled " +
+					rolls[0] +
+					" and " +
+					rolls[1];
+			gui.showMessage(msg);
 			movePlayer(player, rolls[0] + rolls[1]);
 			gui.setBuyHouseEnabled(false);
 		}
@@ -132,8 +130,8 @@ public class GameMaster {
         return gameBoard.drawCCCard();
     }
 
-    public Card drawChanceCard() {
-        return gameBoard.drawChanceCard();
+    public void drawChanceCard() {
+        gameBoard.drawChanceCard();
     }
 
 
@@ -175,10 +173,10 @@ public class GameMaster {
 
     public ArrayList getSellerList() {
         ArrayList sellers = new ArrayList();
-        for (Iterator iter = players.iterator(); iter.hasNext();) {
-            Player player = (Player) iter.next();
-            if(player != getCurrentPlayer()) sellers.add(player);
-        }
+		for (final Object player1 : players) {
+			Player player = (Player) player1;
+			if (player != getCurrentPlayer()) sellers.add(player);
+		}
         return sellers;
     }
 
@@ -208,7 +206,7 @@ public class GameMaster {
 		updateGUI();
 	}
 
-	public void playerMoved(Player player) {
+	private void playerMoved(Player player) {
 		Cell cell = player.getPosition();
 		int playerIndex = getPlayerIndex(player);
 		if(cell instanceof CardCell) {
@@ -275,10 +273,6 @@ public class GameMaster {
 		this.gui = gui;
 	}
 
-	public void setInitAmountOfMoney(int money) {
-		this.initAmountOfMoney = money;
-	}
-
 	public void setNumberOfPlayers(int number) {
 		players.clear();
 		for(int i =0;i<number;i++) {
@@ -288,10 +282,6 @@ public class GameMaster {
 		}
 	}
 
-	public void setUtilDiceRoll(int diceRoll) {
-		this.utilDiceRoll = diceRoll;
-	}
-	
 	public void startGame() {
 		gui.startGame();
 		gui.enablePlayerTurn(0);
